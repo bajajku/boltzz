@@ -13,6 +13,9 @@ import { parseXml } from '../helpers/steps';
 import { BACKEND_URL } from '../helpers/config';
 import { Loader } from '../components/Loader';
 import { PreviewFrame } from '../components/PreviewFrame';
+import { FileExplorer } from '../components/FileExplorer';
+import { StepsList } from '../components/StepsList';
+import { useWebContainer } from '../helpers/useWebContainers';
 
 
 const MOCK_FILE_CONTENT = `// This is a sample file content
@@ -28,7 +31,7 @@ export function Builder(){
 
     const location = useLocation();
     const {prompt} = location.state as {prompt: string};
-    const [usePrompt, setPrompt] = useState("")
+    const [userPrompt, setPrompt] = useState("")
     const [llmMessages, setLlmMessages] = useState<{role: "user" | "assistant", content: string}[]>([]);
     const [loading, setLoading] = useState(false);
     const [templateSet, setTemplateSet] = useState(false);
@@ -260,7 +263,7 @@ export function Builder(){
                   {activeTab === 'code' ? (
                     <CodeEditor file={selectedFile} />
                   ) : (
-                    <PreviewFrame webContainer={webcontainer} files={files} />
+                    <PreviewFrame webContainer={webContainer || null} files={files} />
                   )}
                 </div>
               </div>
