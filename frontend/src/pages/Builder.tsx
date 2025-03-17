@@ -9,6 +9,10 @@ import { FileItem } from '../types';
 import axios from 'axios';
 import { TabView } from '../components/TabView';
 import { CodeEditor } from '../components/CodeEditor';
+import { parseXml } from '../helpers/steps';
+import { BACKEND_URL } from '../helpers/config';
+import { Loader } from '../components/Loader';
+import { PreviewFrame } from '../components/PreviewFrame';
 
 
 const MOCK_FILE_CONTENT = `// This is a sample file content
